@@ -1,0 +1,15 @@
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\bin\Debug\net10.0\PharmacyBilling.Application.deps.json
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\bin\Debug\net10.0\PharmacyBilling.Application.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\bin\Debug\net10.0\PharmacyBilling.Application.pdb
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\bin\Debug\net10.0\PharmacyBilling.Domain.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\bin\Debug\net10.0\PharmacyBilling.Domain.pdb
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.csproj.AssemblyReference.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.AssemblyInfoInputs.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.AssemblyInfo.cs
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.csproj.CoreCompileInputs.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\Pharmacy.832F1F55.Up2Date
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\refint\PharmacyBilling.Application.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\PharmacyBilling.Application.pdb
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net10.0\ref\PharmacyBilling.Application.dll

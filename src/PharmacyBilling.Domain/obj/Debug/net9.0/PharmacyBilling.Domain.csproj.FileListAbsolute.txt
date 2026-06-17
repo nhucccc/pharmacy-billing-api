@@ -1,0 +1,12 @@
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\bin\Debug\net9.0\PharmacyBilling.Domain.deps.json
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\bin\Debug\net9.0\PharmacyBilling.Domain.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\bin\Debug\net9.0\PharmacyBilling.Domain.pdb
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.csproj.AssemblyReference.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.AssemblyInfoInputs.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.AssemblyInfo.cs
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.csproj.CoreCompileInputs.cache
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\refint\PharmacyBilling.Domain.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.pdb
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\ref\PharmacyBilling.Domain.dll

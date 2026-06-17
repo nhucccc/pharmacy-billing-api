@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PharmacyBilling.API</name>
+    </assembly>
+    <members>
+        <member name="T:PharmacyBilling.API.Controllers.AuthController">
+            <summary>
+            Authentication &amp; Authorization - JWT Token Management
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.Login(PharmacyBilling.Application.DTOs.Auth.LoginRequest,System.Threading.CancellationToken)">
+            <summary>Login - Get JWT Access Token + Refresh Token</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.Register(PharmacyBilling.Application.DTOs.Auth.RegisterRequest,System.Threading.CancellationToken)">
+            <summary>Register new user account</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.RegisterPatient(PharmacyBilling.Application.DTOs.Auth.RegisterRequest,System.Threading.CancellationToken)">
+            <summary>Register patient (public)</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.Refresh(PharmacyBilling.Application.DTOs.Auth.RefreshTokenRequest,System.Threading.CancellationToken)">
+            <summary>Refresh Access Token using Refresh Token</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.Logout(System.Threading.CancellationToken)">
+            <summary>Logout - Revoke Refresh Token</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.ChangePassword(PharmacyBilling.Application.DTOs.Auth.ChangePasswordRequest,System.Threading.CancellationToken)">
+            <summary>Change password</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.AuthController.Me(PharmacyBilling.Application.Services.UserService,System.Threading.CancellationToken)">
+            <summary>Get current user info (me)</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.DashboardController">
+            <summary>
+            Dashboard &amp; Statistics
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DashboardController.GetStats(System.Threading.CancellationToken)">
+            <summary>Get dashboard statistics</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.DispensationsController">
+            <summary>
+            Quản lý phiếu xuất thuốc - Dispensation Management
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DispensationsController.GetAll(System.String,System.Nullable{PharmacyBilling.Domain.Enums.DispensationStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated dispensations with filters</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DispensationsController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get dispensation by ID with items</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DispensationsController.Create(PharmacyBilling.Application.DTOs.Dispensation.CreateDispensationRequest,System.Threading.CancellationToken)">
+            <summary>Create dispensation from prescription (REST fallback - khi không dùng RabbitMQ)</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DispensationsController.Process(System.Guid,System.Threading.CancellationToken)">
+            <summary>Process dispensation - deduct stock and mark as dispensed</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.DispensationsController.Cancel(System.Guid,PharmacyBilling.API.Controllers.CancelRequest,System.Threading.CancellationToken)">
+            <summary>Cancel dispensation</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.HealthController">
+            <summary>Health Check Endpoint</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.InvoicesController">
+            <summary>
+            Quản lý hóa đơn viện phí - Invoice &amp; Billing Management
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.GetAll(System.String,System.Nullable{PharmacyBilling.Domain.Enums.InvoiceStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated invoices with filters</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get invoice by ID with items</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.Create(PharmacyBilling.Application.DTOs.Invoice.CreateInvoiceRequest,System.Threading.CancellationToken)">
+            <summary>Create invoice for patient</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.Pay(System.Guid,PharmacyBilling.Application.DTOs.Invoice.PayInvoiceRequest,System.Threading.CancellationToken)">
+            <summary>Pay invoice (thu tiền)</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.Cancel(System.Guid,PharmacyBilling.API.Controllers.CancelInvoiceRequest,System.Threading.CancellationToken)">
+            <summary>Cancel invoice</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.InvoicesController.RevenueReport(System.DateTime,System.DateTime,System.Threading.CancellationToken)">
+            <summary>Revenue report [Admin only]</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.MedicinesController">
+            <summary>
+            Quản lý kho thuốc - Medicine Inventory Management
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.GetAll(System.String,System.String,System.Nullable{System.Boolean},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated list of medicines with search/filter</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get medicine by ID</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.GetCategories(System.Threading.CancellationToken)">
+            <summary>Get all medicine categories</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.GetLowStock(System.Threading.CancellationToken)">
+            <summary>Get low stock medicines (below minimum threshold)</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.Create(PharmacyBilling.Application.DTOs.Medicine.CreateMedicineRequest,System.Threading.CancellationToken)">
+            <summary>Create new medicine [Admin only]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.Update(System.Guid,PharmacyBilling.Application.DTOs.Medicine.UpdateMedicineRequest,System.Threading.CancellationToken)">
+            <summary>Update medicine info [Admin only]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>Soft delete medicine [Admin only]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.ImportStock(System.Guid,PharmacyBilling.Application.DTOs.Medicine.StockImportRequest,System.Threading.CancellationToken)">
+            <summary>Import stock (nhập kho) [Admin, Nurse]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.MedicinesController.AdjustStock(System.Guid,PharmacyBilling.Application.DTOs.Medicine.StockAdjustRequest,System.Threading.CancellationToken)">
+            <summary>Adjust stock (kiểm kê) [Admin only]</summary>
+        </member>
+        <member name="T:PharmacyBilling.API.Controllers.UsersController">
+            <summary>
+            Quản lý người dùng - User Management
+            </summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.UsersController.GetAll(System.String,System.Nullable{PharmacyBilling.Domain.Enums.UserRole},System.Nullable{System.Boolean},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated users [Admin only]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.UsersController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get user by ID</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.UsersController.UpdateMyProfile(PharmacyBilling.Application.DTOs.User.UpdateProfileRequest,System.Threading.CancellationToken)">
+            <summary>Update my profile</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.UsersController.UpdateProfile(System.Guid,PharmacyBilling.Application.DTOs.User.UpdateProfileRequest,System.Threading.CancellationToken)">
+            <summary>Update user profile [Admin only]</summary>
+        </member>
+        <member name="M:PharmacyBilling.API.Controllers.UsersController.ToggleActive(System.Guid,System.Threading.CancellationToken)">
+            <summary>Toggle user active/inactive [Admin only]</summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+    </members>
+</doc>

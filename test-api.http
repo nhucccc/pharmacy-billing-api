@@ -1,0 +1,29 @@
+### Health Check
+GET http://localhost:5000/health
+
+### Get Swagger
+GET http://localhost:5000/swagger/index.html
+
+### Login as Admin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@pharmacy.com",
+  "password": "Admin@123"
+}
+
+### Get Current User (requires auth)
+GET http://localhost:5000/api/auth/me
+Authorization: Bearer {{token}}
+
+### Get Medicines
+GET http://localhost:5000/api/medicines?page=1&pageSize=10
+
+### Check RabbitMQ Management UI
+# Open in browser: http://localhost:15672
+# Username: guest
+# Password: guest
+
+### Check Frontend
+# Open in browser: http://localhost:3000

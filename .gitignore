@@ -1,0 +1,22 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Docker
+.docker/
+
+# Secrets
+appsettings.Development.json
+*.env.local
+
+# Tools temp
+tools/GenHash/bin/
+tools/GenHash/obj/
