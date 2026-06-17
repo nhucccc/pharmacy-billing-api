@@ -19,9 +19,18 @@ public static class DependencyInjection
     {
         // EF Core - hỗ trợ cả SQL Server và PostgreSQL
         var connStr = config.GetConnectionString("DefaultConnection")!;
-        var usePostgres = connStr.Contains("postgresql", StringComparison.OrdinalIgnoreCase)
-                       || connStr.Contains("postgres", StringComparison.OrdinalIgnoreCase)
-                       || connStr.StartsWith("Host=", StringComparison.OrdinalIgnoreCase);
+        var usePostgres = connStr.Contains("postgresql://", StringComparison.OrdinalIgnoreCase)
+                       || connStr.Contains("postgres://", StringComparison.OrdinalIgnoreCase)
+                       || connStr.StartsWith("Host=", StringComparison.OrdinalIgnoreCase)
+                       || connStr.Contains("host=", StringComparison.OrdinalIgnoreCase);
+
+        // Convert postgresql:// URL sang Npgsql connection string nếu cần
+        if (usePostgres && (connStr.StartsWith("postgresql://") || connStr.StartsWith("postgres://")))
+        {
+            var uri = new Uri(connStr);
+            var userInfo = uri.UserInfo.Split(':');
+            connStr = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+        }
 
         services.AddDbContext<PharmacyDbContext>(opts =>
         {
