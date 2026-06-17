@@ -13,3 +13,4 @@ C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net9.0
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net9.0\refint\PharmacyBilling.Application.dll
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net9.0\PharmacyBilling.Application.pdb
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net9.0\ref\PharmacyBilling.Application.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Application\obj\Debug\net9.0\PharmacyBilling.Application.sourcelink.json

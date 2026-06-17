@@ -10,3 +10,4 @@ C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\Phar
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\refint\PharmacyBilling.Domain.dll
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.pdb
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\ref\PharmacyBilling.Domain.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Domain\obj\Debug\net9.0\PharmacyBilling.Domain.sourcelink.json

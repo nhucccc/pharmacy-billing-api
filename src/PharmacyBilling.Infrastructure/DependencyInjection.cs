@@ -17,10 +17,19 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        // EF Core
+        // EF Core - hỗ trợ cả SQL Server và PostgreSQL
+        var connStr = config.GetConnectionString("DefaultConnection")!;
+        var usePostgres = connStr.Contains("postgresql", StringComparison.OrdinalIgnoreCase)
+                       || connStr.Contains("postgres", StringComparison.OrdinalIgnoreCase)
+                       || connStr.StartsWith("Host=", StringComparison.OrdinalIgnoreCase);
+
         services.AddDbContext<PharmacyDbContext>(opts =>
-            opts.UseSqlServer(config.GetConnectionString("DefaultConnection"),
-                sql => sql.EnableRetryOnFailure(3)));
+        {
+            if (usePostgres)
+                opts.UseNpgsql(connStr, npgsql => npgsql.EnableRetryOnFailure(3));
+            else
+                opts.UseSqlServer(connStr, sql => sql.EnableRetryOnFailure(3));
+        });
 
         // Repositories & UnitOfWork
         services.AddScoped<IUnitOfWork, UnitOfWork>();

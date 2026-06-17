@@ -193,3 +193,6 @@ C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\obj\Debug\net9.0\Pharmac
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\obj\Debug\net9.0\PharmacyBilling.API.pdb
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\obj\Debug\net9.0\PharmacyBilling.API.genruntimeconfig.cache
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\obj\Debug\net9.0\ref\PharmacyBilling.API.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\bin\Debug\net9.0\Npgsql.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.API\obj\Debug\net9.0\PharmacyBilling.API.sourcelink.json

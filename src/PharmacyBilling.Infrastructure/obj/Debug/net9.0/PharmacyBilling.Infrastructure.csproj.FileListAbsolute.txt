@@ -17,3 +17,4 @@ C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Infrastructure\obj\Debug\net
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Infrastructure\obj\Debug\net9.0\PharmacyBilling.Infrastructure.pdb
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Infrastructure\obj\Debug\net9.0\PharmacyBilling.Infrastructure.genruntimeconfig.cache
 C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Infrastructure\obj\Debug\net9.0\ref\PharmacyBilling.Infrastructure.dll
+C:\BTLFullstack\PharmacyBilling\src\PharmacyBilling.Infrastructure\obj\Debug\net9.0\PharmacyBilling.Infrastructure.sourcelink.json
