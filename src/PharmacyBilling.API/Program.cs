@@ -131,16 +131,17 @@ try
 
         if (isPostgres)
         {
-            // PostgreSQL trên Railway: dùng EnsureCreated (tạo tables từ model)
             await context.Database.EnsureCreatedAsync();
             Log.Information("PostgreSQL database ensured.");
         }
         else
         {
-            // SQL Server local: dùng Migrate (chạy migration files)
             await context.Database.MigrateAsync();
             Log.Information("SQL Server migration completed.");
         }
+
+        // ── Seed data (chạy trên cả local và cloud) ───────────
+        await PharmacyBilling.Infrastructure.Data.DatabaseSeeder.SeedAsync(context);
     }
 
     Log.Information("PharmacyBilling API started on {Urls}", string.Join(", ", app.Urls));
