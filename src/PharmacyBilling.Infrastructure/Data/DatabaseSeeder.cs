@@ -32,7 +32,6 @@ public static class DatabaseSeeder
     private static async Task SeedUsersAsync(PharmacyDbContext ctx)
     {
         var d = new DateTime(2026,1,1,0,0,0,DateTimeKind.Utc);
-
         var users = new List<User>();
 
         void Add(string id, string user, string hash, string name, string email, string phone,
@@ -52,7 +51,7 @@ public static class DatabaseSeeder
             Set(u, "IsDeleted",    false);
             Set(u, "CreatedAt",    d);
             Set(u, "PatientCode",  code);
-            Set(u, "DateOfBirth",  dob != null ? DateTime.Parse(dob, null, System.Globalization.DateTimeStyles.AssumeUniversal) : (DateTime?)null);
+            Set(u, "DateOfBirth",  dob != null ? DateTime.SpecifyKind(DateTime.Parse(dob), DateTimeKind.Utc) : (DateTime?)null);
             Set(u, "Gender",       gender);
             Set(u, "Address",      addr);
             Set(u, "InsuranceNumber", ins);

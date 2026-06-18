@@ -39,9 +39,11 @@ public static class DependencyInjection
                 w.Ignore(RelationalEventId.PendingModelChangesWarning));
 
             if (isPostgres)
-                opts.UseNpgsql(connStr, npgsql => npgsql.EnableRetryOnFailure(3));
+                opts.UseNpgsql(connStr, npgsql => npgsql.EnableRetryOnFailure(3))
+                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
             else
-                opts.UseSqlServer(connStr, sql => sql.EnableRetryOnFailure(3));
+                opts.UseSqlServer(connStr, sql => sql.EnableRetryOnFailure(3))
+                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
         });
 
         // ── Repositories & UnitOfWork ─────────────────────────────────────────
