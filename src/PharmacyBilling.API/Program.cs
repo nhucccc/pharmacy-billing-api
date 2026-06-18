@@ -124,8 +124,23 @@ try
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<PharmacyBilling.Infrastructure.Data.PharmacyDbContext>();
-        await context.Database.MigrateAsync();
-        Log.Information("Database migration completed.");
+        var config  = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+        var connStr = config.GetConnectionString("DefaultConnection") ?? "";
+        var isPostgres = connStr.StartsWith("postgresql://") || connStr.StartsWith("postgres://")
+                      || connStr.Contains("Host=", StringComparison.OrdinalIgnoreCase);
+
+        if (isPostgres)
+        {
+            // PostgreSQL trên Railway: dùng EnsureCreated (tạo tables từ model)
+            await context.Database.EnsureCreatedAsync();
+            Log.Information("PostgreSQL database ensured.");
+        }
+        else
+        {
+            // SQL Server local: dùng Migrate (chạy migration files)
+            await context.Database.MigrateAsync();
+            Log.Information("SQL Server migration completed.");
+        }
     }
 
     Log.Information("PharmacyBilling API started on {Urls}", string.Join(", ", app.Urls));

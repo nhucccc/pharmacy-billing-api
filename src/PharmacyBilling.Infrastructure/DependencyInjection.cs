@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -17,40 +18,43 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        // EF Core - hỗ trợ cả SQL Server và PostgreSQL
-        var connStr = config.GetConnectionString("DefaultConnection")!;
-        var usePostgres = connStr.Contains("postgresql://", StringComparison.OrdinalIgnoreCase)
-                       || connStr.Contains("postgres://", StringComparison.OrdinalIgnoreCase)
-                       || connStr.StartsWith("Host=", StringComparison.OrdinalIgnoreCase)
-                       || connStr.Contains("host=", StringComparison.OrdinalIgnoreCase);
+        // ── Database ──────────────────────────────────────────────────────────
+        var rawConn = config.GetConnectionString("DefaultConnection")
+                      ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection missing");
 
-        // Convert postgresql:// URL sang Npgsql connection string nếu cần
-        if (usePostgres && (connStr.StartsWith("postgresql://") || connStr.StartsWith("postgres://")))
-        {
-            var uri = new Uri(connStr);
-            var userInfo = uri.UserInfo.Split(':');
-            connStr = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
-        }
+        // Nếu là PostgreSQL URL (Railway) thì convert sang Npgsql format
+        var isPostgres = rawConn.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase)
+                      || rawConn.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase)
+                      || rawConn.Contains("Host=", StringComparison.OrdinalIgnoreCase);
+
+        var connStr = isPostgres && (rawConn.StartsWith("postgresql://") || rawConn.StartsWith("postgres://"))
+            ? ConvertPostgresUrl(rawConn)
+            : rawConn;
 
         services.AddDbContext<PharmacyDbContext>(opts =>
         {
-            if (usePostgres)
+            // Suppress PendingModelChanges warning - migration dùng SQL Server syntax
+            // nhưng chạy được trên cả 2 DB nhờ EnsureCreated fallback
+            opts.ConfigureWarnings(w =>
+                w.Ignore(RelationalEventId.PendingModelChangesWarning));
+
+            if (isPostgres)
                 opts.UseNpgsql(connStr, npgsql => npgsql.EnableRetryOnFailure(3));
             else
                 opts.UseSqlServer(connStr, sql => sql.EnableRetryOnFailure(3));
         });
 
-        // Repositories & UnitOfWork
+        // ── Repositories & UnitOfWork ─────────────────────────────────────────
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        // Application Services
+        // ── Application Services ──────────────────────────────────────────────
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IPasswordService, PasswordService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IMessagePublisher, RabbitMqPublisher>();
         services.AddHttpContextAccessor();
 
-        // JWT Auth
+        // ── JWT Authentication ────────────────────────────────────────────────
         var jwtSecret = config["Jwt:Secret"] ?? throw new InvalidOperationException("JWT Secret missing");
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(opts =>
@@ -77,9 +81,22 @@ public static class DependencyInjection
                 };
             });
 
-        // RabbitMQ Consumer Background Service
+        // ── RabbitMQ Consumer ─────────────────────────────────────────────────
         services.AddHostedService<RabbitMqConsumer>();
 
         return services;
+    }
+
+    /// <summary>
+    /// Convert postgresql://user:pass@host:port/db → Host=host;Port=port;Database=db;Username=user;Password=pass
+    /// </summary>
+    private static string ConvertPostgresUrl(string url)
+    {
+        var uri = new Uri(url);
+        var userInfo = uri.UserInfo.Split(':');
+        var user = userInfo.Length > 0 ? Uri.UnescapeDataString(userInfo[0]) : "";
+        var pass = userInfo.Length > 1 ? Uri.UnescapeDataString(userInfo[1]) : "";
+        var db   = uri.AbsolutePath.TrimStart('/');
+        return $"Host={uri.Host};Port={uri.Port};Database={db};Username={user};Password={pass};SSL Mode=Require;Trust Server Certificate=true";
     }
 }
